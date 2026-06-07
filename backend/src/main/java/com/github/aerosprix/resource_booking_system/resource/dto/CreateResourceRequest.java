@@ -11,5 +11,6 @@ public record CreateResourceRequest(
         @NotBlank(message = "Category is required")
         String category,
 
+        @Size(max = 1000)
         String description
 ) {}

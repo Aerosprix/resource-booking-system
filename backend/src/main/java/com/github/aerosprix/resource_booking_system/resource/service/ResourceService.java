@@ -26,10 +26,11 @@ public class ResourceService {
     }
 
     public ResourceResponse createResource(CreateResourceRequest resourceDto) {
+        System.out.println(resourceDto);
         Resource resourceEntity = new Resource();
         resourceEntity.setName(resourceDto.name());
         resourceEntity.setCategory(resourceDto.category());
-        resourceEntity.setCategory(resourceDto.category());
+        resourceEntity.setDescription(resourceDto.description());
         Resource savedResource = resourceRepository.save(resourceEntity);
         return convertToDto(savedResource);
     }
