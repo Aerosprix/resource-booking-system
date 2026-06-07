@@ -1,18 +1,17 @@
 spring:
   application:
     name: resource-booking-system
-  datasource:
-    # JDBC URL syntax format for PostgreSQL
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:company_db}
-    username: ${DB_USER:POSTGRES_USER}
-    password: ${DB_PASSWORD:POSTGRES_USER}
-    driver-class-name: org.postgresql.Driver
+
+  profiles:
+    default: local
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      # 'update' automatically builds tables based on your Java @Entity classes
-      ddl-auto: update 
+      ddl-auto: update
+
     show-sql: true
+
     properties:
       hibernate:
         format_sql: true
