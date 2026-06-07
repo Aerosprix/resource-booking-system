@@ -22,12 +22,12 @@ public class ResourceController {
         this.resourceService = resourceService;
     }
 
-    @GetMapping("/resource")
+    @GetMapping
     public List<ResourceResponse> getResources() {
         return resourceService.getResources();
     }
 
-    @PostMapping("/resource")
+    @PostMapping
     public ResponseEntity<ResourceResponse> createResource(CreateResourceRequest resource) {
         ResourceResponse createdResource = resourceService.createResource(resource);
         return ResponseEntity
