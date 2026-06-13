@@ -26,6 +26,11 @@ public class ResourceController {
         return resourceService.getResources();
     }
 
+    @GetMapping("/{id}")
+    public ResourceResponse getResourceById(@PathVariable Long id) {
+        return resourceService.getResourceById(id);
+    }
+
     @PostMapping
     public ResponseEntity<ResourceResponse> createResource(@Valid @RequestBody ResourceCreateRequest resource) {
         ResourceResponse createdResource = resourceService.createResource(resource);
@@ -36,10 +41,16 @@ public class ResourceController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<ResourceResponse> updateResource(
-            @Valid @PathVariable Long id,
+            @PathVariable Long id,
             @Valid @RequestBody ResourceUpdateRequest resource) {
         return ResponseEntity
                 .ok()
                 .body(resourceService.updateResource(id, resource));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteResource(@PathVariable Long id) {
+        resourceService.deleteResource(id);
+        return ResponseEntity.noContent().build();
     }
 }

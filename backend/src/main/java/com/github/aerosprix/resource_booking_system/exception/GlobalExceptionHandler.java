@@ -1,7 +1,8 @@
-package shared.exception;
+package com.github.aerosprix.resource_booking_system.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.LinkedHashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(BaseNotFoundException.class)
     public ResponseEntity<Object> handleNotFound(RuntimeException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("status", HttpStatus.NOT_FOUND.value());
