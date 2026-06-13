@@ -1,6 +1,7 @@
 package com.github.aerosprix.resource_booking_system.resource.controller;
 
-import com.github.aerosprix.resource_booking_system.resource.dto.CreateResourceRequest;
+import com.github.aerosprix.resource_booking_system.resource.dto.ResourceCreateRequest;
+import com.github.aerosprix.resource_booking_system.resource.dto.ResourceUpdateRequest;
 import com.github.aerosprix.resource_booking_system.resource.service.ResourceService;
 import com.github.aerosprix.resource_booking_system.resource.dto.ResourceResponse;
 import jakarta.validation.Valid;
@@ -26,11 +27,19 @@ public class ResourceController {
     }
 
     @PostMapping
-    public ResponseEntity<ResourceResponse> createResource(@Valid @RequestBody CreateResourceRequest resource) {
-        System.out.println(resource);
+    public ResponseEntity<ResourceResponse> createResource(@Valid @RequestBody ResourceCreateRequest resource) {
         ResourceResponse createdResource = resourceService.createResource(resource);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(createdResource);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ResourceResponse> updateResource(
+            @Valid @PathVariable Long id,
+            @Valid @RequestBody ResourceUpdateRequest resource) {
+        return ResponseEntity
+                .ok()
+                .body(resourceService.updateResource(id, resource));
     }
 }
